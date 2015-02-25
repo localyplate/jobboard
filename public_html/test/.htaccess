@@ -1,0 +1,12 @@
+#RewriteEngine On
+#RewriteCond %{HTTP_HOST} ^(japanworkingholiday.org)(:80)? [NC]
+#RewriteRule ^(.*) http://www.job-board.info/$1 [R=301,L]
+
+ErrorDocument 503 /maintenance.html
+<IfModule mod_rewrite.c>
+  RewriteEngine On
+  RewriteCond %{REQUEST_URI} !=/maintenance.html
+  RewriteCond %{REMOTE_ADDR} !=221.248.135.122
+  RewriteRule ^.*$ - [R=503,L]
+</IfModule>
+

@@ -1,0 +1,31 @@
+# AddType x-mapp-php5 .php
+# AddHandler x-mapp-php5 .php
+
+RewriteEngine on
+Options +FollowSymlinks
+
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule . index.php [L]
+
+ErrorDocument 404 /page-unavailable/
+
+<files ~ "\.tpl$">
+order deny,allow
+allow from none
+deny from all
+</files>
+
+
+
+RewriteEngine On
+# RewriteCond %{HTTP_HOST} ^(japanworkingholiday.org)(:80)? [NC]
+# RewriteRule ^(.*) http://www.job-board.info/$1 [R=301,L]
+#
+# local
+#
+RewriteCond %{HTTP_HOST} ^(japanworkingholiday.org)(:80)? [NC]
+RewriteRule ^(.*) http://www.jobboard.localhost/$1 [R=301,L]
+
+
+
