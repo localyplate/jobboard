@@ -1,0 +1,7 @@
+777 /var/www/html/jobboard.localhost/public_html/_templates/default/_cache
+
+CREATE TABLE IF NOT EXISTS `access_ranking` (
+  `id` int(10) unsigned NOT NULL,
+  `date` datetime NOT NULL,
+  `preview` bigint(20) unsigned NOT NULL DEFAULT '0'
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
