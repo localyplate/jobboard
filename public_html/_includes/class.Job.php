@@ -592,6 +592,35 @@ class Job
 		}
 		return $jobs;
 	}
+        
+	public function GetAccessRankingJobs($limit = false)
+	{
+		global $db;
+		
+		$jobs = array();
+		
+		$sql_limit = 'LIMIT ' . $limit;
+					
+		$i = 0;
+                
+                $sql = ' SELECT jbs.id, ar.preview as nr '
+                        . ' FROM ' . DB_PREFIX.'access_ranking ar, ' . DB_PREFIX.'jobs jbs '
+                        . ' WHERE jbs.id = ar.id and jbs.is_temp = 0 AND jbs.is_active = 1 and ar.date >= subdate(now(), interval 30 day)'
+                        . ' GROUP BY ar.id '
+                        . ' ORDER BY ar.preview DESC '
+                        . $sql_limit;
+                
+		$result = $db->query($sql);
+                
+		while ($row = $result->fetch_assoc())
+		{
+			$current_job = new Job($row['id']);
+			$jobs[$i] = $current_job->GetInfo();
+			$jobs[$i]['apps'] = $row['nr'];
+			$i++;
+		}
+		return $jobs;
+	}
 		
 	
 	// Search for jobs

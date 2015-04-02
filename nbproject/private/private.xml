@@ -4,6 +4,13 @@
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group/>
         <group name="QJNAVI"/>
-        <group name="PLATE"/>
+        <group name="PLATE">
+            <file>file:/var/www/html/jobboard.localhost/public_html/_templates/default/_translations/translations_en.ini</file>
+            <file>file:/var/www/html/jobboard.localhost/public_html/page_home.php</file>
+            <file>file:/var/www/html/jobboard.localhost/public_html/_templates/default/index.tpl</file>
+            <file>file:/var/www/html/jobboard.localhost/_/work</file>
+            <file>file:/var/www/html/jobboard.localhost/public_html/_includes/class.Job.php</file>
+            <file>file:/var/www/html/jobboard.localhost/public_html/_templates/default/home.tpl</file>
+        </group>
     </open-files>
 </project-private>
