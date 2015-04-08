@@ -1,0 +1,5 @@
+/var/www/html/jobboard.localhost/public_html/page_home.php
+/var/www/html/jobboard.localhost/public_html/_templates/default/home.tpl
+/var/www/html/jobboard.localhost/public_html/_templates/default/_translations/translations_en.ini
+/var/www/html/jobboard.localhost/public_html/_includes/class.Job.php
+/var/www/html/jobboard.localhost/public_html/page_job.php
