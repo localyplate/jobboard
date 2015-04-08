@@ -29,7 +29,7 @@
 		$smarty->assign('jobs_count_per_city', $jobsCountPerCity);
 	}
 
-	$smarty->assign('most_applied_to_jobs', $job->GetAccessRankingJobs(NUMBER_OF_MOST_APPLIED_TO_JOBS_TO_GET));
+	$smarty->assign('most_previewed_jobs', $job->GetAccessRankingJobs(NUMBER_OF_MOST_APPLIED_TO_JOBS_TO_GET));
 
 	$smarty->assign('latest_jobs', $job->GetJobs(0, 0, NUMBER_OF_LATEST_JOBS_TO_GET, 0, 0));
 
