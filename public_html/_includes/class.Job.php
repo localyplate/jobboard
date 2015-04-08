@@ -540,9 +540,9 @@ class Job {
                 . ' FROM ' . DB_PREFIX . 'access_ranking ar, ' . DB_PREFIX . 'jobs jbs '
                 . ' WHERE jbs.id = ar.job_id and jbs.is_temp = 0 AND jbs.is_active = 1 and `date` >= subdate(now(), interval 30 day)'
                 . ' GROUP BY ar.job_id '
-                . ' ORDER BY ar.preview DESC '
+                . ' ORDER BY preview DESC '
                 . $sql_limit;
-
+        
         $result = $db->query($sql);
 
         while ($row = $result->fetch_assoc()) {
