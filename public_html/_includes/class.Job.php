@@ -536,10 +536,10 @@ class Job {
 
         $i = 0;
 
-        $sql = ' SELECT jbs.id, ar.preview as nr '
+        $sql = ' SELECT jbs.id, SUM(ar.preview) as preview, MAX(ar.date) as `date`'
                 . ' FROM ' . DB_PREFIX . 'access_ranking ar, ' . DB_PREFIX . 'jobs jbs '
-                . ' WHERE jbs.id = ar.id and jbs.is_temp = 0 AND jbs.is_active = 1 and ar.date >= subdate(now(), interval 30 day)'
-                . ' GROUP BY ar.id '
+                . ' WHERE jbs.id = ar.job_id and jbs.is_temp = 0 AND jbs.is_active = 1 and `date` >= subdate(now(), interval 30 day)'
+                . ' GROUP BY ar.job_id '
                 . ' ORDER BY ar.preview DESC '
                 . $sql_limit;
 
@@ -548,7 +548,7 @@ class Job {
         while ($row = $result->fetch_assoc()) {
             $current_job = new Job($row['id']);
             $jobs[$i] = $current_job->GetInfo();
-            $jobs[$i]['apps'] = $row['nr'];
+            $jobs[$i]['apps'] = $row['preview'];
             $i++;
         }
         return $jobs;
@@ -808,6 +808,38 @@ class Job {
             $sql = 'UPDATE ' . DB_PREFIX . 'jobs SET views_count = views_count + 1
 										 WHERE id = ' . $this->mId;
             $db->query($sql);
+        }
+    }
+
+    public function UpdateRanking() {
+        global $db;
+
+        $date = date('Y-m-d H:i:s');
+        
+        $sql = ' SELECT * '
+                . ' FROM ' . DB_PREFIX . 'access_ranking '
+                . ' WHERE job_id = ' . $this->mId . ' AND DATE_FORMAT(date, "%Y-%m-%d") LIKE DATE_FORMAT(NOW(), "%Y-%m-%d") ';
+        $result = $db->queryRow($sql);
+        
+        if ($result == NULL) {
+            $sql = ' INSERT INTO ' . DB_PREFIX . 'access_ranking (`job_id`, `date`, `preview`) VALUES '
+                    . ' (' . $this->mId . ', "' . $date . '", 1) ';
+            $db->query($sql);
+        } else {
+            $current = strtotime($date);
+            $timestamp = strtotime($result['date']);
+            // 300 (s) = 60 * 5 (s) => 5 min
+            // 60 (s) = 60 * 1 (s) => 1 min
+            if (($current - $timestamp) < 60) {
+                // valid
+            } else {
+                // expired
+                $sql = ' UPDATE ' . DB_PREFIX . 'access_ranking '
+                        . ' SET `date` = "' . $date . '", preview =  preview + 1 '
+                        . ' WHERE id = ' . $result['id'];
+                
+                $db->query($sql);
+            }
         }
     }
 
