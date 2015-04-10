@@ -1,0 +1,3 @@
+/var/www/html/jobboard.localhost/public_html/page_home.php
+/var/www/html/jobboard.localhost/public_html/spotlight_unchecker.php
+/var/www/html/jobboard.localhost/public_html/_includes/class.Job.php
