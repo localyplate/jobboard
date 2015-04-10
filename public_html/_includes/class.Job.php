@@ -542,7 +542,7 @@ class Job {
                 . ' GROUP BY ar.job_id '
                 . ' ORDER BY preview DESC '
                 . $sql_limit;
-        
+
         $result = $db->query($sql);
 
         while ($row = $result->fetch_assoc()) {
@@ -815,12 +815,12 @@ class Job {
         global $db;
 
         $date = date('Y-m-d H:i:s');
-        
+
         $sql = ' SELECT * '
                 . ' FROM ' . DB_PREFIX . 'access_ranking '
                 . ' WHERE job_id = ' . $this->mId . ' AND DATE_FORMAT(date, "%Y-%m-%d") LIKE DATE_FORMAT(NOW(), "%Y-%m-%d") ';
         $result = $db->queryRow($sql);
-        
+
         if ($result == NULL) {
             $sql = ' INSERT INTO ' . DB_PREFIX . 'access_ranking (`job_id`, `date`, `preview`) VALUES '
                     . ' (' . $this->mId . ', "' . $date . '", 1) ';
@@ -837,7 +837,7 @@ class Job {
                 $sql = ' UPDATE ' . DB_PREFIX . 'access_ranking '
                         . ' SET `date` = "' . $date . '", preview =  preview + 1 '
                         . ' WHERE id = ' . $result['id'];
-                
+
                 $db->query($sql);
             }
         }
@@ -1043,6 +1043,17 @@ class Job {
     public function SpotlightDeactivate() {
         global $db;
         $sql = 'UPDATE ' . DB_PREFIX . 'jobs SET spotlight = 0 WHERE id = ' . $this->mId;
+        $db->query($sql);
+    }
+
+    public function SpotlightCronUpdate() {
+        global $db;
+
+        $sql = ' UPDATE ' . DB_PREFIX . 'jobs '
+                . ' SET spotlight = 0 '
+                . ' WHERE spotlight = 1 AND spotlight_udate IS NOT NULL '
+                . ' AND spotlight_udate <= subdate(now(), interval 2 week) ';
+        
         $db->query($sql);
     }
 
