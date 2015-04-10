@@ -255,7 +255,7 @@ class Job {
 		               FROM ' . DB_PREFIX . 'jobs
 		               WHERE 1 ' . $conditions . ' AND is_temp = 0 AND is_active = 1
 		               ' . $order . ' ' . $sql_limit;
-        $result = $db->query($sql);
+        $result = $db->query($sql); echo $sql;
         while ($row = $result->fetch_assoc()) {
             $current_job = new Job($row['id']);
             $jobs[] = $current_job->GetInfo();
@@ -1035,7 +1035,7 @@ class Job {
     // Activate spotlight-feature for a job post
     public function SpotlightActivate() {
         global $db;
-        $sql = 'UPDATE ' . DB_PREFIX . 'jobs SET spotlight = 1 WHERE id = ' . $this->mId;
+        $sql = 'UPDATE ' . DB_PREFIX . 'jobs SET spotlight = 1, spotlight_udate = NOW() WHERE id = ' . $this->mId;
         $db->query($sql);
     }
 
