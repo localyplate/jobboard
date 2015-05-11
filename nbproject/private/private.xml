@@ -1,9 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project-private xmlns="http://www.netbeans.org/ns/project-private/1">
-    <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="2">
+    <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="4">
         <file>
             <url>public_html/_includes/class.Job.php</url>
-            <bookmark id="2">
+            <bookmark id="4">
+                <name/>
+                <line>109</line>
+                <key/>
+            </bookmark>
+            <bookmark id="3">
                 <name/>
                 <line>529</line>
                 <key/>
@@ -20,10 +25,7 @@
         <group name="QJNAVI"/>
         <group name="PLATE">
             <file>file:/var/www/html/jobboard.localhost/public_html/_templates/default/_translations/translations_en.ini</file>
-            <file>file:/var/www/html/jobboard.localhost/public_html/_includes/class.Job.php</file>
-            <file>file:/var/www/html/jobboard.localhost/public_html/_templates/default/job.tpl</file>
-            <file>file:/var/www/html/jobboard.localhost/public_html/_templates/default/home.tpl</file>
-            <file>file:/var/www/html/jobboard.localhost/public_html/page_job.php</file>
+            <file>file:/var/www/html/jobboard.localhost/_/work</file>
         </group>
     </open-files>
 </project-private>

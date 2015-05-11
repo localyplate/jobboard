@@ -1,4 +1,4 @@
-<?php /* Smarty version 2.6.26, created on 2015-02-11 09:44:36
+<?php /* Smarty version 2.6.26, created on 2015-04-08 04:08:54
          compiled from home.tpl */ ?>
 <?php require_once(SMARTY_CORE_DIR . 'core.load_plugins.php');
 smarty_core_load_plugins(array('plugins' => array(array('function', 'cycle', 'home.tpl', 20, false),)), $this); ?>
@@ -78,12 +78,12 @@ _templates/<?php echo $this->_tpl_vars['THEME']; ?>
 	</div>
 <?php endif; ?>
 
-<?php if ($this->_tpl_vars['most_applied_to_jobs']): ?>
+<?php if ($this->_tpl_vars['most_previewed_jobs']): ?>
 	<br />
-	<h2><?php echo $this->_tpl_vars['translations']['homepage']['popular_jobs']; ?>
+	<h2><?php echo $this->_tpl_vars['translations']['homepage']['access_ranking']; ?>
 </h2>
 	
-	<?php $_from = $this->_tpl_vars['most_applied_to_jobs']; if (!is_array($_from) && !is_object($_from)) { settype($_from, 'array'); }if (count($_from)):
+	<?php $_from = $this->_tpl_vars['most_previewed_jobs']; if (!is_array($_from) && !is_object($_from)) { settype($_from, 'array'); }if (count($_from)):
     foreach ($_from as $this->_tpl_vars['job']):
 ?>
 		<div class="<?php echo smarty_function_cycle(array('values' => 'row,row-alt'), $this);?>
@@ -108,7 +108,7 @@ _templates/<?php echo $this->_tpl_vars['THEME']; ?>
 <?php endif; ?>
 			</span>
 			<span class="time-posted"><strong><?php echo $this->_tpl_vars['job']['apps']; ?>
-</strong> <?php echo $this->_tpl_vars['translations']['homepage']['applicants']; ?>
+</strong> <?php echo $this->_tpl_vars['translations']['homepage']['viewed']; ?>
 </span>			
 		</div>
 	<?php endforeach; endif; unset($_from); ?>
